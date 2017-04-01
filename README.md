@@ -16,13 +16,17 @@ dependencies:
 
 ```crystal
 require "fsm"
+Include Fsm
 ```
+Include the module Fsm to be able to access it's class FiniteStateMachine.
+You need to input the branches of the states in a tuple of form
+id : String | input : T| id_of_next_state_if_input| output :O
+The program will crash if input is submitted that the current state can't handle.
 
-TODO: Write usage instructions here
 
 ## Development
 
-TODO: Write development instructions here
+Add a Moore machine class as well. Check input.
 
 ## Contributing
 
