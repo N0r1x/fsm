@@ -9,7 +9,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   fsm:
-    github: [N0r1x]/fsm
+    github: N0r1x/fsm
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[N0r1x]/fsm/fork )
+1. Fork it ( https://github.com/N0r1x/fsm/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -34,4 +34,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[N0r1x]](https://github.com/[N0r1x]) N0r1x - creator, maintainer
+- [N0r1x](https://github.com/N0r1x) N0r1x - creator, maintainer
