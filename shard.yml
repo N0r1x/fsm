@@ -1,0 +1,12 @@
+name: fsm
+version: 0.1.0
+
+authors:
+  - N0r1x <1norixion1@gmail.com>
+
+targets:
+  test:
+    main: example/test.cr
+crystal: 0.21.1
+
+license: MIT
