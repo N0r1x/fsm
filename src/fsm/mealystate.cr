@@ -1,17 +1,12 @@
-class MealyState(T, O)
-  property tuples : Array(Tuple(T,MealyState(T, O),O))
-  def initialize()
-    @tuples=[] of Tuple(T,MealyState(T, O),O)
+struct MealyState(I, T, O)
+  property state : T, machine : FiniteStateMealyMachine(I, T, O)
+  def initialize(t,m)
+    @state=t
+    @machine=m
   end
-  def << (a)
-    @tuples << a
-  end
-  def match(input)
-    tuples.each{|t| #wss totaal niet valid
-      if t[0]==input
-        return {t[1],t[2]}
-      end}
-    puts "error"
-    return {nil,nil}
+  def match(input : I)
+    tuple=@machine.nextstate(input,@state)
+    @state=tuple[0]
+    return tuple[1]
   end
   end

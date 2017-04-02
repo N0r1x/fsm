@@ -1,23 +1,17 @@
 require "../src/fsm"
 include Fsm
-filename="example/test"
-file = File.open(filename)
-temp_array=[] of Tuple(String,String,String,String)
-file.each_line {|line|
-  words=line.split(" ")
-  if(words.size == 4)
-    temp_array << { words[0], words[1], words[2], words[3] }
+proc = ->(x : Int32, y : Int32){
+  if (x==y)
+    return {(x+1)%2,(x+1)%2}
   else
-    puts "Too many words!"
-  end}
-tuplelist=[] of Tuple(String,Int32,String,Int32)
-temp_array.each{|t|
-  tuplelist << {t[0],t[1].to_i,t[2],t[3].to_i}
+    return {y,y}
+  end
 }
-test=FiniteStateMachine(Int32,Int32).new(tuplelist)
-a=0
+mach=FiniteStateMealyMachine(Int32,Int32,Int32).new(0,proc)
+state=mach.givestate
+input=0
+puts 0
 while true
-  a=test.cycle(a)
-  puts a
-  sleep 0.5
+  input=state.match(input)
+  puts input
 end

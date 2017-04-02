@@ -1,6 +1,8 @@
 require "./fsm/*"
 
   module Fsm
-    class FiniteStateMachine
+    class FiniteStateMealyMachine
+    end
+    class MealyState
     end
 end

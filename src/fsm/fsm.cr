@@ -1,30 +1,17 @@
-class FiniteStateMachine(T, O)
-  #todo: functie die String->T doet en String->O : gevonden Proc
-  property states : Array(MealyState(T, O)) , current : MealyState(T, O)
-  def initialize(list : Array(Tuple(String, T, String, O)) )
-    idlist=getids(list)
-    @states=Array(MealyState(T, O)).new(idlist.size){MealyState(T, O).new}
-    fillstates(list,idlist)
-    @current=@states[0].not_nil! #if states[0] is nil raise
+require "./mealystate.cr"
+class FiniteStateMealyMachine(I,T,O)
+  property function : Proc( I,T,Tuple(T,O)), startingstate : T
+  def initialize( startingstate : T, proc : Proc(I,T,Tuple(T,O)))
+    @function=proc
+    @startingstate=startingstate
   end
-  def cycle(input)
-    temp=@current.match(input)
-    @current=temp[0].not_nil!
-    return temp[1]
+  def givestate()
+    return MealyState(I,T,O).new(@startingstate,self)
   end
-  private def fillstates(list,idlist)
-    list.each{|t|
-      keya=idlist.index(t[0]).not_nil!
-      keyb=idlist.index(t[2]).not_nil!
-      @states[keya]<<{t[1],@states[keyb],t[3]}
-    }
+  def setstartingstate(state : T)
+    @startingstate=state
   end
-  private def getids(list)
-    idlist=[] of String
-    list.each{|t|
-      if !idlist.includes?(t[0])
-        idlist<<t[0]
-      end}
-    return idlist
+  def nextstate(input, state)
+    return function.call(input,state)
   end
 end
